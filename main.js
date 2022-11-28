@@ -21,7 +21,7 @@ let form = document.querySelector('form');
     'Console Error':          () => console.error('Console Error'),
     'Console Count':          () => console.count('Console Count'),
     'Console Warn':           () => console.warn('Console Warn'),
-    'Console Assert':         () => console.assert(a == b, {x, y, err_message}),
+    'Console Assert':         () => console.assert(a == b, {a, b, err_message}),
     'Console Clear':          () => console.clear(),
     'Console Dir':            () => console.dir(func),
     'Console dirxml':         () => console.dirxml(document),
