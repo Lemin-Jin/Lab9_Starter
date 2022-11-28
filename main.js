@@ -5,7 +5,14 @@ let form = document.querySelector('form');
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
-      output.innerHTML = calculate(firstNum, operator, secondNum);
+      try{
+        isNum(num1);
+        isNum(num2);
+         output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+        }   
+        catch (e){
+            console.error(e);
+        }
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
@@ -42,24 +49,10 @@ let form = document.querySelector('form');
         button.addEventListener('click',func[button.innerText]);
     }
 
-
-function calculate(num1, operator, num2){
-    try{
-        isNum(num1);
-        isNum(num2);
-        return eval(`${num1} ${operator} ${num2}`);
-    }
-    catch (e){
-        console.error(e);
-        return null;
-    }
-}
-
 function isNum(data){
     if(!isNaN(data))
         throw new ValidationError(`invalid input: ${data}`)
 }
-
 
 class ValidationError extends Error {
     constructor(message) {
