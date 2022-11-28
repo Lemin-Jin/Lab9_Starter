@@ -1,3 +1,15 @@
+function isNum(data){
+    if(isNaN(data))
+        throw new ValidationError(`invalid input: ${data}`)
+}
+
+class ValidationError extends Error {
+    constructor(message) {
+    super(message);
+    this.name = "ValidationError"; 
+    }
+}
+
 let form = document.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -6,9 +18,9 @@ let form = document.querySelector('form');
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
       try{
-        isNum(num1);
-        isNum(num2);
-         output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+        isNum(firstNum);
+        isNum(secondNum);
+        output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
         }   
         catch (e){
             console.error(e);
@@ -49,16 +61,3 @@ let form = document.querySelector('form');
         button.addEventListener('click',func[button.innerText]);
     }
 
-function isNum(data){
-    if(!isNaN(data))
-        throw new ValidationError(`invalid input: ${data}`)
-}
-
-class ValidationError extends Error {
-    constructor(message) {
-    super(message); // (1)
-    this.name = "ValidationError"; // (2)
-    }
-}
-
-  
